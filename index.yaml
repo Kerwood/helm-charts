@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   pubsub-push-config-injecter:
   - apiVersion: v2
+    appVersion: v1.0.0
+    created: "2023-04-06T18:54:50.509780671Z"
+    description: Admission controller for injeting a pushConfig endpoint on a PubSub
+      Subscription.
+    digest: 25364ece72637553b5a674e8e64f275fd496f3c83e22426c261cfd77aa015c9e
+    name: pubsub-push-config-injecter
+    urls:
+    - https://github.com/Kerwood/helm-charts/releases/download/pubsub-push-config-injecter-1.0.0/pubsub-push-config-injecter-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     created: "2023-04-06T17:43:51.6599256Z"
     description: Admission controller for injeting a pushConfig endpoint on a PubSub
       Subscription.
@@ -28,4 +38,4 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/pubsub-push-config-injecter-0.1.0/pubsub-push-config-injecter-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T17:43:51.6599352Z"
+generated: "2023-04-06T18:54:50.509801172Z"
