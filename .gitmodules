@@ -1,4 +1,3 @@
-
 [submodule "charts/pubsub-push-config-injecter"]
 	path = charts/pubsub-push-config-injecter
 	url = https://github.com/Kerwood/pubsub-push-config-injecter
