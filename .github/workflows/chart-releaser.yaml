@@ -1,0 +1,54 @@
+name: Chart Releaser
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/Chart.yaml"
+
+jobs:
+  update-submodules:
+    name: Update Submodules
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git submodule update --init --remote --merge
+          git commit -am "Updated Submodules" || true
+          git push origin main
+
+  chart-releaser:
+    name: Chart Releaser
+    needs: update-submodules
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git submodule update --init --remote
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Run chart-releaser
+        uses: kerwood/chart-releaser-action@main
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          charts_dir: ./charts
