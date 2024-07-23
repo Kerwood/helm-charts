@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  az-group-controller:
+  - apiVersion: v2
+    appVersion: v0.1.0
+    created: "2024-07-23T15:50:50.355327935Z"
+    description: Reconciles group information from Azure to Kubernetes AzureGroup
+      resources.
+    digest: fab63f0f57485c39aaed6a2e1698a111d2abc667013f2a7214f0b0420ed3f22c
+    name: az-group-controller
+    urls:
+    - https://github.com/Kerwood/helm-charts/releases/download/az-group-controller-1.0.0/az-group-controller-1.0.0.tgz
+    version: 1.0.0
+  pubsub-push-config-injecter:
+  - apiVersion: v2
+    appVersion: v1.0.0
+    created: "2024-07-23T15:50:50.518967853Z"
+    description: Admission controller for injeting a pushConfig endpoint on a PubSub
+      Subscription.
+    digest: 80d44d75ceb338f50727ccd5e0c656ddaa3d97d7f0cf2c53e6561d85a28b26c8
+    name: pubsub-push-config-injecter
+    urls:
+    - https://github.com/Kerwood/helm-charts/releases/download/pubsub-push-config-injecter-1.0.0/pubsub-push-config-injecter-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-07-23T15:50:50.518980085Z"
