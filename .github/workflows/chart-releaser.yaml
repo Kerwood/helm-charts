@@ -48,7 +48,7 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Run chart-releaser
-        uses: kerwood/chart-releaser-action@main
+        uses: kerwood/chart-releaser-action@v1
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           charts_dir: ./charts
