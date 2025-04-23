@@ -1,0 +1,47 @@
+# https://cloud.google.com/config-connector/docs/reference/resource-docs/iam/iamserviceaccount
+
+global:
+  # Add labels from a parent chart to all manifests.
+  # Google Cloud labels only support hyphens (-), underscores (_), lowercase characters and numbers.
+  labels: {}
+
+  # The Google Project ID.
+  # [Required for Workload Identity]
+  projectID: null 
+ 
+# Name of the Config Connector resource.
+# The name will be the ID of the Google Service Account and must be between 6 and 30 characters.
+name: iamserviceaccount-sample
+
+# Labels on the Config Connector resource.
+# Google Cloud labels only support hyphens (-), underscores (_), lowercase characters and numbers.
+labels: {}
+
+# Annotations on the Config Connector resource.
+annotations: {}
+
+# Below property sets a ArgoCD Sync Wave annotation on all resources. Set it to false (bool) to disable it.
+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-waves/
+argoSyncWave: "-5"
+
+spec:
+  # A text description of the service account. Must be less than or equal to 256 UTF-8 bytes.
+  description: "Description of Service Account"
+
+# Workload Identity allows workloads in your GKE clusters to impersonate Identity and
+# Access Management (IAM) service accounts to access Google Cloud services.
+workloadIdentity:
+  enabled: false
+
+  # The Kubernetes Namespace your service account is in.
+  kubernetesNamespace: default
+
+  # The ID of the Google Cloud Project that contains the Kubernetes cluster.
+  gkeProjectID: some-project-id
+
+# [ DEPRECATED ] Use workload identity!
+# If keyFile is enabled, Config Connector will create a service account JSON key file and
+# add it to the K8s namespace as a secret called "<service-account-name>-key".
+# In this example the secret will be named "iamserviceaccount-sample-key".
+keyFile:
+  create: false
