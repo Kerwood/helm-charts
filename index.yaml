@@ -11,16 +11,6 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/az-group-controller-1.0.0/az-group-controller-1.0.0.tgz
     version: 1.0.0
-  iam-service-account:
-  - apiVersion: v2
-    created: "2025-04-23T12:28:30.796207275Z"
-    description: A Helm chart for creating Google Cloud IAM service accounts.
-    digest: e75636d11ac62a775f2986fc247f8b2013998271ccfde3b12e08d0b9238d78b8
-    name: iam-service-account
-    type: application
-    urls:
-    - https://github.com/Kerwood/helm-charts/releases/download/iam-service-account-2.0.1/iam-service-account-2.0.1.tgz
-    version: 2.0.1
   k8s-deployment:
   - apiVersion: v2
     created: "2025-04-23T10:34:09.948685794Z"
