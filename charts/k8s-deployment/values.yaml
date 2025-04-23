@@ -1,0 +1,169 @@
+global:
+  # Add labels from a parent chart to all manifests.
+  labels: {}
+
+  # The Google Project ID.
+  # [Required for Cloud SQL Proxy]
+  projectID: null
+
+# Will rename all resources.
+fullnameOverride: ""
+
+##################################################
+#                  Deployment                    #
+##################################################
+
+deployment:
+  # Labels on the Deployment definition.
+  labels: {}
+
+  # Annotations on the Deployment definition.
+  annotations: {}
+
+  # Pod Replicas
+  replicas: 1
+
+  # Pod Annotations
+  podAnnotations: {}
+
+  # Pod Labels
+  podLabels: {}
+
+  # Used for Image Registry credentials other than your default registry.
+  imagePullSecrets: []
+    #- secret-name-here
+
+  # Main container configuration
+  container:
+    image: example-image
+    tag: latest
+
+    # Enable custom command
+    #command: ["my-command"]
+    #args: ["with", "--params=yes"]
+
+    # containerPort needs to be set if the container has to receive traffic.
+    containerPort: null
+    resources:
+      requests:
+        memory: 500Mi
+        cpu: 100m
+      limits:
+        memory: 2000Mi
+        cpu: 1000m
+
+    # https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
+    livenessProbe:
+      enable: false
+      httpGet:
+        path: /healthz
+
+    readinessProbe:
+      enable: false
+      httpGet:
+        path: /readyz
+
+    environment: {}
+      # SOME_ENV: some-value
+
+    envFromConfigmap: []
+      # - configmap-name
+
+    fieldRefEnvironment: {}
+      # SOME_ENV: some-field-reference
+
+    # Below list of kubernetes secret names will be mounted into the container
+    # under the path /secrets/<secret-name>/<secret-key>
+    secrets: []
+    # - very-secret
+
+    # Below list of configmaps will be mounted into he container.
+    configMaps: []
+    # - name: some-configmap
+    #   mountPath: /some/path
+
+    # Below additional volumes vil be mounted in the container at mountPath.
+    additionalVolumeMounts: []
+    # - name: cache-volume
+    #   mountPath: /some/path
+
+  # Add additional volumes.
+  additionalVolumes: []
+  # - name: cache-volume
+  #   emptyDir: {}
+
+  # Assign a service account for your application.
+  # This service account represents your application and is used for authentication
+  # with Workload Identity. The service account must be Workload Identity enabled.
+  serviceAccountName: default
+
+  # Enable the Google Cloud SQL Proxy sidecar
+  # Find the latest version here, https://gcr.io/cloud-sql-connectors/cloud-sql-proxy
+  cloudSQLProxy:
+    enable: false
+    instanceName: sqlinstance-name
+
+    # [Deprecated]
+    # If specified, Cloud SQL Proxy will use the provided credentials file for authn
+    # insted of application default login aka Workload Identity.
+    # secretKeyName: google-service-account-key
+
+    # Immutable, if not specified, region will default to europe-west3
+    # region: europe-west3
+
+##################################################
+#                    Service                     #
+##################################################
+
+# Remember to set the container port when enabling the service.
+service:
+  enable: false
+  # Labels on the Service definition.
+  labels: {}
+
+  # Annotations on the Service definition.
+  annotations: {}
+
+
+##################################################
+#                    Ingress                     #
+##################################################
+
+ingress:
+  # Enable the ingress definition.
+  enable: false
+
+  # Labels on the Ingress definition.
+  labels: {}
+
+  # Annotations on the Ingress definition.
+  annotations: {}
+
+  # The ingressClassName for the ingress definition.
+  ingressClassName: nginx
+
+  # The Certmanager ClusterIssuer to use for certificate provisioning.
+  clusterIssuer: ""
+
+  # URL of the application
+  host: example.org
+
+  # Redirect HTTP to HTTPS.
+  # SSL Redirect is disabled for security reasons. Enable only for frontend applications.
+  sslRedirect: false
+
+  # Redirect www.example.org to example.org.
+  # Use this for custmer facing sites to support old Boomer habits.
+  wwwRedirect: false
+
+  # By default, this chart will create a pathType: Prefix on "/" for the service above.
+  # If you want additional paths eg. a path to a BFF, add them below.
+  addtionalPaths: []
+  # - path: /api/
+  #   pathType: Prefix
+  #   backend:
+  #     service:
+  #       name: backend-for-frontend
+  #       port:
+  #         number: 3000
+
