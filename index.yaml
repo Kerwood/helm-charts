@@ -11,6 +11,15 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/az-group-controller-1.0.0/az-group-controller-1.0.0.tgz
     version: 1.0.0
+  k8s-deployment:
+  - apiVersion: v2
+    created: "2025-04-23T10:34:09.948685794Z"
+    description: A Helm chart for a Kubernetes deployment, incl. service and ingress.
+    digest: 1404b32e74f08d55fece35ea4a7f7d4b825d20c384e44e92bc3a223f096cb611
+    name: k8s-deployment
+    urls:
+    - https://github.com/Kerwood/helm-charts/releases/download/k8s-deployment-1.0.0/k8s-deployment-1.0.0.tgz
+    version: 1.0.0
   pubsub-push-config-injecter:
   - apiVersion: v2
     appVersion: v1.0.0
@@ -22,4 +31,4 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/pubsub-push-config-injecter-1.0.0/pubsub-push-config-injecter-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-23T15:50:50.518980085Z"
+generated: "2025-04-23T10:34:09.948695402Z"
