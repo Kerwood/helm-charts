@@ -21,6 +21,16 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/gcp-iam-service-account-1.0.0/gcp-iam-service-account-1.0.0.tgz
     version: 1.0.0
+  gcp-sqlinstance:
+  - apiVersion: v2
+    created: "2025-04-24T08:57:28.243812605Z"
+    description: A Helm chart for creating Google Cloud SQL Instance.
+    digest: 5ef28c312396d886e0bb99ffb4812d8f26a33c7c031e776617eafc186ebf5299
+    name: gcp-sqlinstance
+    type: application
+    urls:
+    - https://github.com/Kerwood/helm-charts/releases/download/gcp-sqlinstance-1.0.0/gcp-sqlinstance-1.0.0.tgz
+    version: 1.0.0
   k8s-deployment:
   - apiVersion: v2
     created: "2025-04-23T10:34:09.948685794Z"
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/Kerwood/helm-charts/releases/download/pubsub-push-config-injecter-1.0.0/pubsub-push-config-injecter-1.0.0.tgz
     version: 1.0.0
-generated: "2025-04-23T12:32:54.484444881Z"
+generated: "2025-04-24T08:57:28.243822524Z"
