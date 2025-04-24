@@ -1,0 +1,33 @@
+{{- if .Values.serviceAccountName }}
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPartialPolicy
+metadata:
+  name: sqluser-{{ .Values.serviceAccountName }}
+  {{- if .Values.argoSyncWave }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.argoSyncWave | quote }}
+  {{- end }}
+  labels:
+    {{- include "sqlinstance.labels" $ | nindent 4 }}
+    {{- range $k, $v := $.Values.labels }}
+    {{- printf "%s: %s" $k ($v | quote) | nindent 4 }}
+    {{- end }}
+spec:
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: "projects/{{ .Values.global.projectID }}"
+  bindings:
+    - role: roles/cloudsql.instanceUser
+      members:
+        - memberFrom:
+            serviceAccountRef:
+              name: {{ .Values.serviceAccountName }}
+    - role: roles/cloudsql.client
+      members:
+        - memberFrom:
+            serviceAccountRef:
+              name: {{ .Values.serviceAccountName }}
+---
+{{- end }}
+
